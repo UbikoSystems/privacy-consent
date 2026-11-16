@@ -20,7 +20,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.2/consent.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.3/consent.js" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -54,7 +54,7 @@ The banner lives in a **Shadow DOM**: the site's CSS can't break it, and it can'
 
 On a site with its own variables (e.g. Client-First), you can point to them: `--consent-accent: var(--brand-primary);`.
 
-Other variables: `--consent-toggle-off`, `--consent-shadow`, `--consent-offset` (distance from the screen edge), `--consent-z` (z-index), `--consent-focus`, `--consent-heading-weight`, `--consent-accent-size`, `--consent-button-weight`, `--consent-button-case` (`uppercase` or `none`).
+Other variables: `--consent-toggle-off`, `--consent-shadow`, `--consent-offset` (distance from the screen edge, default `1rem`), `--consent-width` (default `30rem`), `--consent-z` (z-index), `--consent-focus`, `--consent-heading-weight`, `--consent-accent-size`, `--consent-button-weight`, `--consent-button-case` (`uppercase` or `none`).
 
 ## What it does
 
@@ -77,4 +77,4 @@ Block a script or an iframe until its category is accepted:
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
 ## Versions
-Sites load a pinned tag (`@0.1.2`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
+Sites load a pinned tag (`@0.1.3`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
