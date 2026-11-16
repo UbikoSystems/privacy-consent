@@ -20,7 +20,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.1/consent.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.2/consent.js" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -46,7 +46,9 @@ The banner lives in a **Shadow DOM**: the site's CSS can't break it, and it can'
   --consent-radius-button: 3rem;    /* button corners */
   --consent-font: "Open Sans", sans-serif;          /* default: inherits the site font */
   --consent-font-heading: "Tenor Sans", serif;      /* title */
-  --consent-font-accent: "Arapey", serif;           /* the italic part of the title */
+  /* Optional title accent: the second part of the title ("vos choix") in another style */
+  --consent-title-accent-style: italic;             /* default: normal (title looks even) */
+  --consent-font-accent: "Arapey", serif;           /* default: same font as the title */
 }
 ```
 
@@ -75,4 +77,4 @@ Block a script or an iframe until its category is accepted:
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
 ## Versions
-Sites load a pinned tag (`@0.1.1`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
+Sites load a pinned tag (`@0.1.2`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).

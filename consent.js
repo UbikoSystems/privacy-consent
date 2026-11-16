@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.1 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.2 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -185,7 +185,7 @@
     ".card[data-overflow] .fade{opacity:1}",
     ".text{display:flex;flex-direction:column;gap:0.75rem}",
     ".title{font-family:var(--consent-font-heading,inherit);font-size:1.625rem;line-height:2rem;font-weight:var(--consent-heading-weight,400)}",
-    ".title em{font-family:var(--consent-font-accent,inherit);font-style:italic;font-size:var(--consent-accent-size,1em)}",
+    ".title em{font-family:var(--consent-font-accent,inherit);font-style:var(--consent-title-accent-style,normal);font-size:var(--consent-accent-size,1em)}",
     ".text a{color:inherit;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.15em}",
     ".prefs{display:flex;flex-direction:column}",
     ".cat{display:flex;align-items:flex-start;gap:1.5rem;padding-block:1rem;border-top:1px solid var(--_border)}",
@@ -360,7 +360,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.1",
+    version: "0.1.2",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {
