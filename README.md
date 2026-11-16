@@ -14,13 +14,13 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 | `version` | `1` | Raising it asks every visitor again (e.g. a new tool or a new policy) |
 | `defaultLang` | `"fr"` | Banner language when `<html lang>` is not `fr*`, `en*` or `es*` |
 | `policyUrl` | `{ fr: "/politique-de-confidentialite", en: "/en/privacy-policy" }` | Privacy policy link, per language (or one string) |
-| `categories` | `["analytics", "marketing"]` | Only the categories the site really uses. "Essential" is always shown |
+| `categories` | `["analytics", "marketing"]` | Only the categories the site really uses. "Essential" is always shown. The intro text adapts (e.g. marketing only = no mention of traffic measurement) |
 | `texts` | `{ en: { body: "…" } }` | Optional: overrides some texts per language |
 | `reloadOnWithdraw` | `true` | Reload the page when a visitor withdraws consent (default `true`) |
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.5/consent.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.6/consent.js" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -78,4 +78,4 @@ Block a script or an iframe until its category is accepted:
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
 ## Versions
-Sites load a pinned tag (`@0.1.5`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
+Sites load a pinned tag (`@0.1.6`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).

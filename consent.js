@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.5 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.6 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -28,6 +28,8 @@
       titleA: "Votre vie privée, ",
       titleB: "vos choix",
       body: "Nous utilisons des témoins pour mesurer la fréquentation du site et, avec votre accord, pour vous présenter des publicités pertinentes. Aucun témoin non essentiel n’est activé sans votre consentement.",
+      bodyAnalytics: "Avec votre accord, nous utilisons des témoins pour mesurer la fréquentation du site. Aucun témoin non essentiel n’est activé sans votre consentement.",
+      bodyMarketing: "Avec votre accord, nous utilisons des témoins pour mesurer nos publicités et vous en présenter de plus pertinentes. Aucun témoin non essentiel n’est activé sans votre consentement.",
       policy: "Politique de confidentialité",
       customize: "Personnaliser mes choix",
       reject: "Tout refuser",
@@ -43,6 +45,8 @@
       titleA: "Your privacy, ",
       titleB: "your choices",
       body: "We use cookies to measure site traffic and, with your consent, to show you relevant ads. No non-essential cookie is turned on without your consent.",
+      bodyAnalytics: "With your consent, we use cookies to measure site traffic. No non-essential cookie is turned on without your consent.",
+      bodyMarketing: "With your consent, we use cookies to measure our ads and show you more relevant ones. No non-essential cookie is turned on without your consent.",
       policy: "Privacy policy",
       customize: "Customize my choices",
       reject: "Reject all",
@@ -58,6 +62,8 @@
       titleA: "Tu privacidad, ",
       titleB: "tus decisiones",
       body: "Usamos cookies para medir el tráfico del sitio y, con tu consentimiento, para mostrarte anuncios relevantes. Ninguna cookie no esencial se activa sin tu consentimiento.",
+      bodyAnalytics: "Con tu consentimiento, usamos cookies para medir el tráfico del sitio. Ninguna cookie no esencial se activa sin tu consentimiento.",
+      bodyMarketing: "Con tu consentimiento, usamos cookies para medir nuestros anuncios y mostrarte anuncios más relevantes. Ninguna cookie no esencial se activa sin tu consentimiento.",
       policy: "Política de privacidad",
       customize: "Personalizar mis opciones",
       reject: "Rechazar todo",
@@ -255,6 +261,8 @@
   function build() {
     var t = texts();
     var url = policyUrl();
+    // The intro text only mentions what the site really uses (config.categories).
+    var body = CATS.length === 1 ? (CATS[0] === "analytics" ? t.bodyAnalytics : t.bodyMarketing) : t.body;
     var cat = function (key, ctrl) {
       var last = key === CATS[CATS.length - 1] || (!CATS.length && key === "necessary");
       return '<div class="cat' + (last ? " cat-last" : "") + '"><div class="cat-text"><p class="cat-name" id="ubk-n-' + key + '">' + esc(t[key][0]) +
@@ -265,7 +273,7 @@
       '<section class="card" role="region" aria-label="' + esc(t.region) + '" data-state="collapsed" hidden>' +
       '<div class="scroll" tabindex="-1">' +
       '<div class="text"><p class="title">' + esc(t.titleA) + "<em>" + esc(t.titleB) + "</em></p>" +
-      "<p>" + esc(t.body) + (url ? ' <a href="' + esc(url) + '">' + esc(t.policy) + "</a>" : "") + "</p></div>" +
+      "<p>" + esc(body) + (url ? ' <a href="' + esc(url) + '">' + esc(t.policy) + "</a>" : "") + "</p></div>" +
       '<div class="prefs" id="ubk-prefs" hidden>' +
       cat("necessary", '<span class="always">' + esc(t.alwaysOn) + "</span>") +
       CATS.map(function (k) {
@@ -390,7 +398,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.5",
+    version: "0.1.6",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {
