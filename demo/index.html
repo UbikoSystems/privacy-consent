@@ -95,12 +95,13 @@ function gtag(){ dataLayer.push(arguments); }
       <div class="row"><label for="font">Fonts</label>
         <select id="font">
           <option value="inherit">Inherit from site</option>
-          <option value="warm" selected>Tenor Sans + Arapey italic + Open Sans</option>
+          <option value="warm" selected>Tenor Sans + Arapey + Open Sans</option>
           <option value="inter">Inter only</option>
-          <option value="playfair">Playfair italic + Inter</option>
+          <option value="playfair">Playfair + Inter</option>
         </select></div>
       <div class="row"><label for="case">Button text</label>
         <select id="case"><option value="uppercase">UPPERCASE</option><option value="none">Normal case</option></select></div>
+      <div class="row"><label for="accentOn">Title accent in italic <code>--consent-title-accent-style</code> (opt-in)</label><input type="checkbox" id="accentOn"></div>
     </fieldset>
 
     <fieldset>
@@ -159,9 +160,9 @@ function gtag(){ dataLayer.push(arguments); }
   };
   var FONTS = {
     inherit: {},
-    warm: { "--consent-font": '"Open Sans", system-ui, sans-serif', "--consent-font-heading": '"Tenor Sans", Georgia, serif', "--consent-font-accent": '"Arapey", Georgia, serif', "--consent-accent-size": "1.15em", "--consent-title-accent-style": "italic" },
+    warm: { "--consent-font": '"Open Sans", system-ui, sans-serif', "--consent-font-heading": '"Tenor Sans", Georgia, serif', "--consent-font-accent": '"Arapey", Georgia, serif', "--consent-accent-size": "1.15em" },
     inter: { "--consent-font": "Inter, system-ui, sans-serif", "--consent-font-heading": "Inter, system-ui, sans-serif", "--consent-heading-weight": "600" },
-    playfair: { "--consent-font": "Inter, system-ui, sans-serif", "--consent-font-heading": '"Playfair Display", Georgia, serif', "--consent-font-accent": '"Playfair Display", Georgia, serif', "--consent-title-accent-style": "italic" }
+    playfair: { "--consent-font": "Inter, system-ui, sans-serif", "--consent-font-heading": '"Playfair Display", Georgia, serif', "--consent-font-accent": '"Playfair Display", Georgia, serif' }
   };
   var DEFAULTS = { "--consent-bg": "#ffffff", "--consent-text": "#1f272e", "--consent-border": "#ddd9d2", "--consent-accent": "#1f272e", "--consent-on-accent": "#ffffff", "--consent-accent-soft": "#e6eaee", "--consent-radius": "0.5rem", "--consent-radius-button": "3rem" };
   var vars = {};
@@ -180,12 +181,12 @@ function gtag(){ dataLayer.push(arguments); }
     });
   }
   function setPreset(name) {
-    Object.keys(vars).forEach(function (k) { if (!/font|accent-size|heading-weight|title-accent/.test(k)) delete vars[k]; });
+    Object.keys(vars).forEach(function (k) { if (!/font|accent-size|heading-weight/.test(k)) delete vars[k]; });
     Object.assign(vars, PRESETS[name]);
     apply();
   }
   function setFont(name) {
-    Object.keys(vars).forEach(function (k) { if (/font|accent-size|heading-weight|title-accent/.test(k)) delete vars[k]; });
+    Object.keys(vars).forEach(function (k) { if (/font|accent-size|heading-weight/.test(k)) delete vars[k]; });
     Object.assign(vars, FONTS[name]);
     apply();
   }
@@ -196,6 +197,10 @@ function gtag(){ dataLayer.push(arguments); }
   document.getElementById("font").addEventListener("change", function (e) { setFont(e.target.value); });
   document.getElementById("case").addEventListener("change", function (e) {
     if (e.target.value === "none") vars["--consent-button-case"] = "none"; else delete vars["--consent-button-case"];
+    apply();
+  });
+  document.getElementById("accentOn").addEventListener("change", function (e) {
+    if (e.target.checked) vars["--consent-title-accent-style"] = "italic"; else delete vars["--consent-title-accent-style"];
     apply();
   });
   document.getElementById("hostileOn").addEventListener("change", function (e) {
