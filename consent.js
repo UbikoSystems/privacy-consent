@@ -1,8 +1,11 @@
 /*!
- * ubk-consent v0.1.6 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.7 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
+ *
+ * Copyright (c) 2026 Ubiko. All rights reserved. Proprietary: use only with Ubiko's written authorization.
+ * See LICENSE.
  */
 (function () {
   "use strict";
@@ -21,7 +24,7 @@
     marketing: [/^_gcl_/, /^_fbp$/, /^_fbc$/]
   };
 
-  // ---------- Texts (client-facing; FR-CA + EN drafts, David validates) ----------
+  // ---------- Texts (FR-CA, EN, ES) ----------
   var TEXTS = {
     fr: {
       region: "Préférences de témoins",
@@ -98,7 +101,7 @@
 
   // ---------- Cookie ----------
   function domainCandidates() {
-    // "www.aurea.com" -> ["aurea.com", "www.aurea.com"]; "localhost" -> []
+    // "www.example.com" -> ["example.com", "www.example.com"]; "localhost" -> []
     var parts = location.hostname.split(".");
     var out = [];
     if (parts.length < 2 || /^\d+$/.test(parts[parts.length - 1])) return out;
@@ -398,7 +401,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.6",
+    version: "0.1.7",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {
