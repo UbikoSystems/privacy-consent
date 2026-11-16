@@ -20,7 +20,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.4/consent.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.5/consent.js" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -29,6 +29,7 @@ The snippet loads the script from jsDelivr, pinned to a version:
 <!-- or any element -->
 <button data-consent="open-prefs">Cookie preferences</button>
 ```
+Sites leaving Enzuzo can keep their existing `href="#manage_cookies"` link: it works too.
 
 ## Customize the look
 
@@ -77,4 +78,4 @@ Block a script or an iframe until its category is accepted:
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
 ## Versions
-Sites load a pinned tag (`@0.1.4`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
+Sites load a pinned tag (`@0.1.5`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).

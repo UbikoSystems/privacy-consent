@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.4 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.5 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -356,9 +356,9 @@
     }
   }
 
-  // ---------- Reopen link: [data-consent="open-prefs"] or href="#cookie-preferences" ----------
+  // ---------- Reopen link: [data-consent="open-prefs"], href="#cookie-preferences", or Enzuzo's href="#manage_cookies" ----------
   document.addEventListener("click", function (e) {
-    var el = e.target.closest && e.target.closest('[data-consent="open-prefs"],a[href="#cookie-preferences"]');
+    var el = e.target.closest && e.target.closest('[data-consent="open-prefs"],a[href="#cookie-preferences"],a[href="#manage_cookies"]');
     if (!el) return;
     e.preventDefault();
     lastFocus = el;
@@ -390,7 +390,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.4",
+    version: "0.1.5",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {
