@@ -1,0 +1,37 @@
+<!--
+  ubk-consent: head snippet. Paste FIRST in the site <head>, before GTM and any other tag.
+  1. Per-site config (edit this object).
+  2. Sets Google Consent Mode defaults to "denied" and, for returning visitors with a valid
+     choice, applies it right away so tags fire on the first page view.
+  3. Loads the banner script (deferred; it never blocks rendering).
+-->
+<script>
+window.ubkConsentConfig = {
+  version: 1,                      // bump to ask everyone again (e.g. new tools or new policy)
+  defaultLang: "fr",               // used when <html lang> is neither fr* nor en*
+  policyUrl: { fr: "/politique-de-confidentialite", en: "/en/privacy-policy" },
+  categories: ["analytics", "marketing"] // only the categories this site really uses
+};
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+(function () {
+  gtag("consent", "default", {
+    ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
+    analytics_storage: "denied", functionality_storage: "granted", security_storage: "granted",
+    wait_for_update: 500
+  });
+  gtag("set", "ads_data_redaction", true);
+  try {
+    var m = document.cookie.match(/(?:^|; )ubk_consent=([^;]*)/);
+    var c = m && JSON.parse(decodeURIComponent(m[1]));
+    if (c && c.v === window.ubkConsentConfig.version) {
+      var mk = c.m ? "granted" : "denied";
+      gtag("consent", "update", {
+        analytics_storage: c.a ? "granted" : "denied",
+        ad_storage: mk, ad_user_data: mk, ad_personalization: mk
+      });
+    }
+  } catch (e) {}
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.0/consent.min.js" defer></script>

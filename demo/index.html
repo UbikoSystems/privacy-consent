@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>privacy-consent — demo & QA</title>
+<script>
+  // Demo only: ?lang=en simulates a translated page (Linguana sets <html lang> per locale).
+  var q = new URLSearchParams(location.search);
+  if (q.get("lang")) document.documentElement.lang = q.get("lang");
+</script>
+
+<!-- ===== Head snippet: same as ../head-snippet.html, except the script path is local ===== -->
+<script>
+window.ubkConsentConfig = {
+  version: 1,
+  defaultLang: "fr",
+  policyUrl: { fr: "#politique-de-confidentialite", en: "#privacy-policy" },
+  categories: ["analytics", "marketing"]
+};
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+(function () {
+  gtag("consent", "default", {
+    ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
+    analytics_storage: "denied", functionality_storage: "granted", security_storage: "granted",
+    wait_for_update: 500
+  });
+  gtag("set", "ads_data_redaction", true);
+  try {
+    var m = document.cookie.match(/(?:^|; )ubk_consent=([^;]*)/);
+    var c = m && JSON.parse(decodeURIComponent(m[1]));
+    if (c && c.v === window.ubkConsentConfig.version) {
+      var mk = c.m ? "granted" : "denied";
+      gtag("consent", "update", {
+        analytics_storage: c.a ? "granted" : "denied",
+        ad_storage: mk, ad_user_data: mk, ad_personalization: mk
+      });
+    }
+  } catch (e) {}
+})();
+</script>
+<script src="../consent.js" defer></script>
+<!-- ===== end head snippet ===== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arapey:ital@1&family=Inter:wght@400;500;600&family=Open+Sans:wght@400;500;600&family=Tenor+Sans&family=Playfair+Display:ital@1&display=swap">
+<style id="site-theme"></style>
+<style id="hostile"></style>
+<style>
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #1f272e; background: #fafafa; font-size: 15px; }
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 2rem 1rem 40rem; display: grid; grid-template-columns: 22rem 1fr; gap: 2rem; }
+  @media (max-width: 52rem) { .wrap { grid-template-columns: 1fr; } }
+  h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1rem; margin: 1.5rem 0 .5rem; }
+  .muted { color: #5b6670; font-size: .875rem; }
+  fieldset { border: 1px solid #ddd; border-radius: .5rem; padding: .75rem 1rem 1rem; margin: 0 0 1rem; background: #fff; }
+  legend { font-weight: 600; padding: 0 .25rem; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin: .4rem 0; }
+  .row label { font-size: .875rem; }
+  .row code { font-size: .75rem; color: #5b6670; }
+  input[type=color] { width: 2.5rem; height: 1.75rem; border: 1px solid #ccc; padding: 0; background: none; }
+  select, input[type=range] { max-width: 10rem; }
+  .ctl { padding: .45rem .8rem; border: 1px solid #bbb; border-radius: .375rem; background: #fff; cursor: pointer; font: inherit; font-size: .875rem; }
+  .ctls { display: flex; flex-wrap: wrap; gap: .5rem; }
+  pre { background: #fff; border: 1px solid #ddd; border-radius: .5rem; padding: .75rem; font-size: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; margin: 0; }
+  footer { max-width: 64rem; margin: 0 auto; padding: 1.5rem 1rem; border-top: 1px solid #ddd; font-size: .875rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section>
+    <h1>privacy-consent</h1>
+    <p class="muted">Demo & QA. Change the theme on the left side; the banner updates live. The "Site CSS" box is exactly what a site adds to its own stylesheet.</p>
+
+    <fieldset>
+      <legend>Theme</legend>
+      <div class="row"><label for="preset">Preset</label>
+        <select id="preset">
+          <option value="default">Default (no variables)</option>
+          <option value="warm" selected>Warm (Paper design)</option>
+          <option value="dark">Dark</option>
+          <option value="fresh">Fresh</option>
+        </select></div>
+      <div class="row"><label>Background <code>--consent-bg</code></label><input type="color" data-var="--consent-bg"></div>
+      <div class="row"><label>Text <code>--consent-text</code></label><input type="color" data-var="--consent-text"></div>
+      <div class="row"><label>Lines <code>--consent-border</code></label><input type="color" data-var="--consent-border"></div>
+      <div class="row"><label>Main button <code>--consent-accent</code></label><input type="color" data-var="--consent-accent"></div>
+      <div class="row"><label>Main button text <code>--consent-on-accent</code></label><input type="color" data-var="--consent-on-accent"></div>
+      <div class="row"><label>Save button <code>--consent-accent-soft</code></label><input type="color" data-var="--consent-accent-soft"></div>
+      <div class="row"><label>Card radius <code>--consent-radius</code></label><input type="range" min="0" max="2" step="0.125" data-var="--consent-radius" data-unit="rem"></div>
+      <div class="row"><label>Button radius <code>--consent-radius-button</code></label><input type="range" min="0" max="3" step="0.125" data-var="--consent-radius-button" data-unit="rem"></div>
+      <div class="row"><label for="font">Fonts</label>
+        <select id="font">
+          <option value="inherit">Inherit from site</option>
+          <option value="warm" selected>Tenor Sans + Arapey + Open Sans</option>
+          <option value="inter">Inter only</option>
+          <option value="playfair">Playfair + Inter</option>
+        </select></div>
+      <div class="row"><label for="case">Button text</label>
+        <select id="case"><option value="uppercase">UPPERCASE</option><option value="none">Normal case</option></select></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Test</legend>
+      <div class="ctls">
+        <a class="ctl" href="?lang=fr-CA">FR</a>
+        <a class="ctl" href="?lang=en">EN</a>
+        <button class="ctl" type="button" id="reset">Reset (new visitor)</button>
+        <button class="ctl" type="button" id="open">Open preferences</button>
+      </div>
+      <div class="row" style="margin-top:.75rem"><label for="hostileOn">Hostile site CSS (banner must not change)</label><input type="checkbox" id="hostileOn"></div>
+    </fieldset>
+  </section>
+
+  <section>
+    <h2 style="margin-top:0">Site CSS (paste in the site's custom code / stylesheet)</h2>
+    <pre id="css"></pre>
+    <h2>Cookies on this page</h2>
+    <pre id="cookies"></pre>
+    <h2>dataLayer (what GTM receives)</h2>
+    <pre id="dl"></pre>
+    <h2>QA checklist</h2>
+    <ol class="muted">
+      <li>New visitor: banner shows; cookies list has no <code>_ga</code>, <code>_fbp</code>, <code>_gcl_*</code>.</li>
+      <li>Accept only analytics: <code>_ga</code> appears, <code>_fbp</code> doesn't; dataLayer shows <code>analytics_storage: granted</code>.</li>
+      <li>Reload: no banner; the head sends the saved choice before GTM.</li>
+      <li>Footer link reopens the banner expanded, switches show the saved choice.</li>
+      <li>Reject all after accepting: <code>_ga</code> is deleted and the page reloads.</li>
+      <li>Keyboard: Tab reaches every button and switch; focus is visible.</li>
+      <li>EN version: all texts in English.</li>
+    </ol>
+  </section>
+</div>
+<footer>
+  <a href="#cookie-preferences">Préférences de témoins</a> ·
+  <a href="#" data-consent="open-prefs">Cookie preferences (data attribute)</a>
+</footer>
+
+<!-- Blocked scripts: they stand in for GA4 / Meta and set first-party cookies once allowed. -->
+<script type="text/plain" data-consent-category="analytics">
+  document.cookie = "_ga=GA1.1.demo; path=/; max-age=3600";
+  document.cookie = "_ga_DEMO=GS1.1.demo; path=/; max-age=3600";
+</script>
+<script type="text/plain" data-consent-category="marketing">
+  document.cookie = "_fbp=fb.1.demo; path=/; max-age=3600";
+  document.cookie = "_gcl_au=1.1.demo; path=/; max-age=3600";
+</script>
+
+<script>
+(function () {
+  var PRESETS = {
+    "default": {},
+    warm: { "--consent-bg": "#F3ECE4", "--consent-text": "#1F272E", "--consent-border": "#DDD9D2", "--consent-accent": "#1F272E", "--consent-on-accent": "#F3ECE4", "--consent-accent-soft": "#BACDE2", "--consent-radius": "0.5rem", "--consent-radius-button": "3rem" },
+    dark: { "--consent-bg": "#16191D", "--consent-text": "#F2F2F0", "--consent-border": "#33383E", "--consent-accent": "#F2C14E", "--consent-on-accent": "#16191D", "--consent-accent-soft": "#2A2F35", "--consent-toggle-off": "#8A8F93", "--consent-radius": "1rem", "--consent-radius-button": "0.5rem" },
+    fresh: { "--consent-bg": "#FFFFFF", "--consent-text": "#0E2A2B", "--consent-border": "#D7E3E1", "--consent-accent": "#0F766E", "--consent-on-accent": "#FFFFFF", "--consent-accent-soft": "#CCEBE7", "--consent-radius": "0.75rem", "--consent-radius-button": "0.375rem" }
+  };
+  var FONTS = {
+    inherit: {},
+    warm: { "--consent-font": '"Open Sans", system-ui, sans-serif', "--consent-font-heading": '"Tenor Sans", Georgia, serif', "--consent-font-accent": '"Arapey", Georgia, serif', "--consent-accent-size": "1.15em" },
+    inter: { "--consent-font": "Inter, system-ui, sans-serif", "--consent-font-heading": "Inter, system-ui, sans-serif", "--consent-heading-weight": "600" },
+    playfair: { "--consent-font": "Inter, system-ui, sans-serif", "--consent-font-heading": '"Playfair Display", Georgia, serif', "--consent-font-accent": '"Playfair Display", Georgia, serif' }
+  };
+  var DEFAULTS = { "--consent-bg": "#ffffff", "--consent-text": "#1f272e", "--consent-border": "#ddd9d2", "--consent-accent": "#1f272e", "--consent-on-accent": "#ffffff", "--consent-accent-soft": "#e6eaee", "--consent-radius": "0.5rem", "--consent-radius-button": "3rem" };
+  var vars = {};
+
+  function apply() {
+    var lines = Object.keys(vars).map(function (k) { return "  " + k + ": " + vars[k] + ";"; });
+    var css = lines.length ? ":root {\n" + lines.join("\n") + "\n}" : "/* nothing: the banner uses its defaults and inherits the site font */";
+    document.getElementById("site-theme").textContent = lines.length ? css : "";
+    document.getElementById("css").textContent = css;
+    syncInputs();
+  }
+  function syncInputs() {
+    document.querySelectorAll("[data-var]").forEach(function (el) {
+      var v = vars[el.dataset.var] || DEFAULTS[el.dataset.var] || "";
+      el.value = el.dataset.unit ? parseFloat(v) || 0 : v.toLowerCase();
+    });
+  }
+  function setPreset(name) {
+    Object.keys(vars).forEach(function (k) { if (!/font|accent-size|heading-weight/.test(k)) delete vars[k]; });
+    Object.assign(vars, PRESETS[name]);
+    apply();
+  }
+  function setFont(name) {
+    Object.keys(vars).forEach(function (k) { if (/font|accent-size|heading-weight/.test(k)) delete vars[k]; });
+    Object.assign(vars, FONTS[name]);
+    apply();
+  }
+  document.querySelectorAll("[data-var]").forEach(function (el) {
+    el.addEventListener("input", function () { vars[el.dataset.var] = el.value + (el.dataset.unit || ""); apply(); });
+  });
+  document.getElementById("preset").addEventListener("change", function (e) { setPreset(e.target.value); });
+  document.getElementById("font").addEventListener("change", function (e) { setFont(e.target.value); });
+  document.getElementById("case").addEventListener("change", function (e) {
+    if (e.target.value === "none") vars["--consent-button-case"] = "none"; else delete vars["--consent-button-case"];
+    apply();
+  });
+  document.getElementById("hostileOn").addEventListener("change", function (e) {
+    document.getElementById("hostile").textContent = e.target.checked
+      ? "button{background:red!important;font-size:30px!important} p{color:magenta!important} *{letter-spacing:.2em!important}" : "";
+  });
+  document.getElementById("reset").addEventListener("click", function () { ubkConsent.reset(); location.reload(); });
+  document.getElementById("open").addEventListener("click", function () { ubkConsent.open(); });
+
+  function render() {
+    document.getElementById("cookies").textContent = document.cookie ? document.cookie.split("; ").join("\n") : "(none)";
+    document.getElementById("dl").textContent = (window.dataLayer || []).map(function (e) {
+      return JSON.stringify(e && typeof e === "object" && "length" in e ? Array.prototype.slice.call(e) : e);
+    }).join("\n");
+  }
+  setPreset("warm"); setFont("warm");
+  render();
+  document.addEventListener("click", function () { setTimeout(render, 80); }, true);
+  setInterval(render, 1500);
+})();
+</script>
+</body>
+</html>
