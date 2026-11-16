@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.3 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.4 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -52,6 +52,21 @@
       necessary: ["Essential", "Needed for the site to work and stay secure: remembering your choices, protecting forms from spam."],
       analytics: ["Audience measurement", "Help us understand how the site is used, in aggregate (Google Analytics)."],
       marketing: ["Marketing", "Measure our ads and show you more relevant ones (Meta, Google Ads)."]
+    },
+    es: {
+      region: "Preferencias de cookies",
+      titleA: "Tu privacidad, ",
+      titleB: "tus decisiones",
+      body: "Usamos cookies para medir el tráfico del sitio y, con tu consentimiento, para mostrarte anuncios relevantes. Ninguna cookie no esencial se activa sin tu consentimiento.",
+      policy: "Política de privacidad",
+      customize: "Personalizar mis opciones",
+      reject: "Rechazar todo",
+      accept: "Aceptar todo",
+      save: "Guardar mis opciones",
+      alwaysOn: "Siempre activas",
+      necessary: ["Esenciales", "Necesarias para que el sitio funcione y sea seguro: recordar tus opciones, proteger los formularios contra el spam."],
+      analytics: ["Medición de audiencia", "Nos ayudan a entender cómo se usa el sitio, de forma agregada (Google Analytics)."],
+      marketing: ["Marketing", "Miden nuestros anuncios y te muestran anuncios más relevantes (Meta, Google Ads)."]
     }
   };
 
@@ -59,7 +74,8 @@
     var l = (document.documentElement.lang || "").toLowerCase();
     if (l.indexOf("en") === 0) return "en";
     if (l.indexOf("fr") === 0) return "fr";
-    return CFG.defaultLang === "en" ? "en" : "fr";
+    if (l.indexOf("es") === 0) return "es";
+    return TEXTS[CFG.defaultLang] ? CFG.defaultLang : "fr";
   }
   function texts() {
     var l = lang();
@@ -71,7 +87,7 @@
   function policyUrl() {
     var p = CFG.policyUrl;
     if (!p) return null;
-    return typeof p === "string" ? p : p[lang()] || p.fr || p.en || null;
+    return typeof p === "string" ? p : p[lang()] || p.fr || p.en || p.es || null;
   }
 
   // ---------- Cookie ----------
@@ -266,6 +282,7 @@
       '<button type="button" class="btn btn-solid" data-act="accept"><span class="label">' + esc(t.accept) + "</span></button>" +
       "</div></div></section>";
 
+    builtLang = lang();
     host = document.createElement("div");
     host.id = "ubk-consent";
     root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
@@ -359,8 +376,21 @@
     }
   }
 
+  // Client-side translators (e.g. Weglot) change <html lang> after load: rebuild the banner in the new language.
+  var builtLang = null;
+  if (window.MutationObserver) {
+    new MutationObserver(function () {
+      if (!host || lang() === builtLang) return;
+      var wasOpen = card && !card.hidden;
+      var wasExpanded = card && card.getAttribute("data-state") === "expanded";
+      host.parentNode && host.parentNode.removeChild(host);
+      host = root = card = null;
+      if (wasOpen) show(wasExpanded);
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  }
+
   window.ubkConsent = {
-    version: "0.1.3",
+    version: "0.1.4",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {

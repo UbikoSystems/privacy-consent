@@ -12,7 +12,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 | Option | Example | What it does |
 |---|---|---|
 | `version` | `1` | Raising it asks every visitor again (e.g. a new tool or a new policy) |
-| `defaultLang` | `"fr"` | Banner language when `<html lang>` is neither `fr*` nor `en*` |
+| `defaultLang` | `"fr"` | Banner language when `<html lang>` is not `fr*`, `en*` or `es*` |
 | `policyUrl` | `{ fr: "/politique-de-confidentialite", en: "/en/privacy-policy" }` | Privacy policy link, per language (or one string) |
 | `categories` | `["analytics", "marketing"]` | Only the categories the site really uses. "Essential" is always shown |
 | `texts` | `{ en: { body: "…" } }` | Optional: overrides some texts per language |
@@ -20,7 +20,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.3/consent.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.4/consent.js" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -62,7 +62,7 @@ Other variables: `--consent-toggle-off`, `--consent-shadow`, `--consent-offset` 
 - **On a choice:** it stores the `ubk_consent` cookie (12 months, root domain) and sends `consent update`. It also pushes `{event: "consent_update", consent_analytics, consent_marketing}` to the dataLayer and runs any scripts that were blocked.
 - **Returning visitor:** no banner. The head snippet applies the saved choice before GTM loads.
 - **Withdrawal:** deletes `_ga*`, `_gid`, `_gat*` (analytics) or `_gcl_*`, `_fbp`, `_fbc` (marketing), then reloads.
-- **Language:** FR-CA or EN, chosen from `<html lang>`, so it works with translation tools that set it per locale.
+- **Language:** FR-CA, EN or ES, chosen from `<html lang>`. If a translator changes `<html lang>` after load (e.g. Weglot), the banner rebuilds in the new language.
 
 Categories map to Consent Mode like this: **analytics** → `analytics_storage`; **marketing** → `ad_storage`, `ad_user_data`, `ad_personalization`.
 
@@ -77,4 +77,4 @@ Block a script or an iframe until its category is accepted:
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
 ## Versions
-Sites load a pinned tag (`@0.1.3`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
+Sites load a pinned tag (`@0.1.4`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
