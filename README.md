@@ -20,7 +20,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.8/consent.js" integrity="sha384-3LLgj+cSY+U+T1oyBbWbrcfm46KJqARfWY5WN/C0XC9fOO+Ku7AwJgAxGbCjOfAI" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.9/consent.js" integrity="sha384-x29mMlna23iPO1wK6ORikfq2sNYa2YoouNKNzw7l59RCTJZ4cQdOKowGsKBMd42U" crossorigin="anonymous" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -78,7 +78,7 @@ Block a script or an iframe until its category is accepted:
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
 ## Versions and integrity
-Sites load a pinned tag (`@0.1.8`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag, and tags are protected (they can't be moved or deleted). jsDelivr serves the file compressed (gzip/brotli).
+Sites load a pinned tag (`@0.1.9`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag, and tags are protected (they can't be moved or deleted). jsDelivr serves the file compressed (gzip/brotli).
 
 The `integrity` attribute (SRI) makes the browser refuse the file if a single byte differs from the release. **Every release gets a new hash**; compute it from the CDN file and update it together with the version:
 ```sh
@@ -86,6 +86,7 @@ curl -s https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@<version>/conse
 ```
 | Version | integrity |
 |---|---|
+| 0.1.9 | `sha384-x29mMlna23iPO1wK6ORikfq2sNYa2YoouNKNzw7l59RCTJZ4cQdOKowGsKBMd42U` |
 | 0.1.8 | `sha384-3LLgj+cSY+U+T1oyBbWbrcfm46KJqARfWY5WN/C0XC9fOO+Ku7AwJgAxGbCjOfAI` |
 | 0.1.7 | `sha384-pB1PtIO+67iNcbCxFaVQ5bQbNJZDUduEAwlnONFIkE1P8fgBOX/vZVI4ySG1/cze` |
 
