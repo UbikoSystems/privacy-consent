@@ -20,7 +20,7 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 
 The snippet loads the script from jsDelivr, pinned to a version:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.7/consent.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@0.1.7/consent.js" integrity="sha384-pB1PtIO+67iNcbCxFaVQ5bQbNJZDUduEAwlnONFIkE1P8fgBOX/vZVI4ySG1/cze" crossorigin="anonymous" defer></script>
 ```
 
 **2. Reopen link.** Visitors need a way to change their choice. Put it in the footer (e.g. "Préférences de témoins" / "Cookie preferences"), either way:
@@ -77,8 +77,16 @@ Block a script or an iframe until its category is accepted:
 ### JavaScript API
 `ubkConsent.open()` · `ubkConsent.get()` → `{analytics, marketing, ts, v}` or `null` · `ubkConsent.reset()`
 
-## Versions
-Sites load a pinned tag (`@0.1.7`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag. jsDelivr serves the file compressed (gzip/brotli).
+## Versions and integrity
+Sites load a pinned tag (`@0.1.7`), so a change here never reaches a live site until that site's tag is updated. Every release gets a git tag, and tags are protected (they can't be moved or deleted). jsDelivr serves the file compressed (gzip/brotli).
+
+The `integrity` attribute (SRI) makes the browser refuse the file if a single byte differs from the release. **Every release gets a new hash**; compute it from the CDN file and update it together with the version:
+```sh
+curl -s https://cdn.jsdelivr.net/gh/UbikoSystems/privacy-consent@<version>/consent.js | openssl dgst -sha384 -binary | openssl base64 -A
+```
+| Version | integrity |
+|---|---|
+| 0.1.7 | `sha384-pB1PtIO+67iNcbCxFaVQ5bQbNJZDUduEAwlnONFIkE1P8fgBOX/vZVI4ySG1/cze` |
 
 ## License
 Proprietary. Copyright (c) 2026 Ubiko. All rights reserved. The code is public so the CDN can serve it to our clients' sites; that does not grant any right to use, copy or modify it. Use is limited to websites operated by Ubiko or its clients under a written agreement. See [LICENSE](LICENSE).
