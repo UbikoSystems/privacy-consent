@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.7 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.8 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -55,7 +55,7 @@
       reject: "Reject all",
       accept: "Accept all",
       save: "Save my choices",
-      alwaysOn: "Always on",
+      alwaysOn: "Always active",
       necessary: ["Essential", "Needed for the site to work and stay secure: remembering your choices, protecting forms from spam."],
       analytics: ["Audience measurement", "Help us understand how the site is used, in aggregate (Google Analytics)."],
       marketing: ["Marketing", "Measure our ads and show you more relevant ones (Meta, Google Ads)."]
@@ -401,7 +401,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.7",
+    version: "0.1.8",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {
