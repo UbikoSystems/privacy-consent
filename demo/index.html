@@ -110,6 +110,7 @@ function gtag(){ dataLayer.push(arguments); }
         <a class="ctl" href="?lang=fr-CA">FR</a>
         <a class="ctl" href="?lang=en">EN</a>
         <a class="ctl" href="?lang=es">ES</a>
+        <a class="ctl" href="?lang=sv">SV</a>
         <button class="ctl" type="button" id="swapLang">Switch lang live (Weglot test)</button>
         <button class="ctl" type="button" id="reset">Reset (new visitor)</button>
         <button class="ctl" type="button" id="open">Open preferences</button>
@@ -210,7 +211,7 @@ function gtag(){ dataLayer.push(arguments); }
       ? "button{background:red!important;font-size:30px!important} p{color:magenta!important} *{letter-spacing:.2em!important}" : "";
   });
   document.getElementById("swapLang").addEventListener("click", function () {
-    var order = ["fr-CA", "en", "es"], cur = document.documentElement.lang;
+    var order = ["fr-CA", "en", "es", "sv"], cur = document.documentElement.lang;
     var i = order.findIndex(function (l) { return cur.indexOf(l.slice(0, 2)) === 0; });
     document.documentElement.lang = order[(i + 1) % order.length];
   });

@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.8 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.9 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -24,7 +24,7 @@
     marketing: [/^_gcl_/, /^_fbp$/, /^_fbc$/]
   };
 
-  // ---------- Texts (FR-CA, EN, ES) ----------
+  // ---------- Texts (FR-CA, EN, ES, SV) ----------
   var TEXTS = {
     fr: {
       region: "Préférences de témoins",
@@ -76,14 +76,30 @@
       necessary: ["Esenciales", "Necesarias para que el sitio funcione y sea seguro: recordar tus opciones, proteger los formularios contra el spam."],
       analytics: ["Medición de audiencia", "Nos ayudan a entender cómo se usa el sitio, de forma agregada (Google Analytics)."],
       marketing: ["Marketing", "Miden nuestros anuncios y te muestran anuncios más relevantes (Meta, Google Ads)."]
+    },
+    sv: {
+      region: "Inställningar för kakor",
+      titleA: "Din integritet, ",
+      titleB: "dina val",
+      body: "Vi använder kakor för att mäta besöken på webbplatsen och, med ditt samtycke, för att visa dig relevanta annonser. Inga kakor som inte är nödvändiga aktiveras utan ditt samtycke.",
+      bodyAnalytics: "Med ditt samtycke använder vi kakor för att mäta besöken på webbplatsen. Inga kakor som inte är nödvändiga aktiveras utan ditt samtycke.",
+      bodyMarketing: "Med ditt samtycke använder vi kakor för att mäta våra annonser och visa dig mer relevanta annonser. Inga kakor som inte är nödvändiga aktiveras utan ditt samtycke.",
+      policy: "Integritetspolicy",
+      customize: "Anpassa mina val",
+      reject: "Avvisa alla",
+      accept: "Acceptera alla",
+      save: "Spara mina val",
+      alwaysOn: "Alltid aktiva",
+      necessary: ["Nödvändiga", "Behövs för att webbplatsen ska fungera och vara säker: komma ihåg dina val och skydda formulär mot skräppost."],
+      analytics: ["Besöksstatistik", "Hjälper oss att förstå hur webbplatsen används, på en samlad nivå (Google Analytics)."],
+      marketing: ["Marknadsföring", "Mäter våra annonser och visar dig mer relevanta annonser (Meta, Google Ads)."]
     }
   };
 
   function lang() {
     var l = (document.documentElement.lang || "").toLowerCase();
-    if (l.indexOf("en") === 0) return "en";
-    if (l.indexOf("fr") === 0) return "fr";
-    if (l.indexOf("es") === 0) return "es";
+    var two = l.slice(0, 2); // "fr-CA" -> "fr", "sv-SE" -> "sv"
+    if (TEXTS[two]) return two;
     return TEXTS[CFG.defaultLang] ? CFG.defaultLang : "fr";
   }
   function texts() {
@@ -96,7 +112,7 @@
   function policyUrl() {
     var p = CFG.policyUrl;
     if (!p) return null;
-    return typeof p === "string" ? p : p[lang()] || p.fr || p.en || p.es || null;
+    return typeof p === "string" ? p : p[lang()] || p.fr || p.en || p.es || p.sv || null;
   }
 
   // ---------- Cookie ----------
@@ -401,7 +417,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.8",
+    version: "0.1.9",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {

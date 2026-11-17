@@ -63,7 +63,7 @@ Other variables: `--consent-toggle-off`, `--consent-shadow`, `--consent-offset` 
 - **On a choice:** it stores the `ubk_consent` cookie (12 months, root domain) and sends `consent update`. It also pushes `{event: "consent_update", consent_analytics, consent_marketing}` to the dataLayer and runs any scripts that were blocked.
 - **Returning visitor:** no banner. The head snippet applies the saved choice before GTM loads.
 - **Withdrawal:** deletes `_ga*`, `_gid`, `_gat*` (analytics) or `_gcl_*`, `_fbp`, `_fbc` (marketing), then reloads.
-- **Language:** FR-CA, EN or ES, chosen from `<html lang>`. If a translator changes `<html lang>` after load (e.g. Weglot), the banner rebuilds in the new language.
+- **Language:** FR-CA, EN, ES or SV (Swedish), chosen from the first two letters of `<html lang>`; any other language uses `defaultLang`. If a translator changes `<html lang>` after load (e.g. Weglot), the banner rebuilds in the new language.
 
 Categories map to Consent Mode like this: **analytics** → `analytics_storage`; **marketing** → `ad_storage`, `ad_user_data`, `ad_personalization`.
 
