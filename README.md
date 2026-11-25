@@ -14,7 +14,8 @@ A cookie consent banner for websites. It blocks analytics and marketing cookies 
 | `version` | `1` | Raising it asks every visitor again (e.g. a new tool or a new policy) |
 | `defaultLang` | `"fr"` | Banner language when `<html lang>` is not `fr*`, `en*` or `es*` |
 | `policyUrl` | `{ fr: "/politique-de-confidentialite", en: "/en/privacy-policy" }` | Privacy policy link, per language (or one string) |
-| `categories` | `["analytics", "marketing"]` | Only the categories the site really uses. "Essential" is always shown. The intro text adapts (e.g. marketing only = no mention of traffic measurement) |
+| `categories` | `["analytics", "marketing"]` | Only the categories the site really uses. "Essential" is always shown. The intro text is general (0.1.10+); each category says what it does when the visitor opens "Customize" |
+| `tools` | `{ analytics: "Google Analytics, Microsoft Clarity", marketing: "Meta" }` | Optional (0.1.10+): tool names shown after each category description, only what the site really runs. Without it, no tool is named |
 | `texts` | `{ en: { body: "…" } }` | Optional: overrides some texts per language |
 | `reloadOnWithdraw` | `true` | Reload the page when a visitor withdraws consent (default `true`) |
 

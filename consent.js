@@ -1,5 +1,5 @@
 /*!
- * ubk-consent v0.1.9 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
+ * ubk-consent v0.1.10 — consent banner for Loi 25 / Google Consent Mode v2 (Basic).
  * Needs the head snippet (head-snippet.html) to run first: it sets the config and the "denied" defaults.
  * The banner lives in a Shadow DOM: site CSS can't break it and it can't break the site.
  * Theme it from the site CSS with custom properties, e.g. :root { --consent-accent: #1F272E; }
@@ -30,9 +30,9 @@
       region: "Préférences de témoins",
       titleA: "Votre vie privée, ",
       titleB: "vos choix",
-      body: "Nous utilisons des témoins pour mesurer la fréquentation du site et, avec votre accord, pour vous présenter des publicités pertinentes. Aucun témoin non essentiel n’est activé sans votre consentement.",
-      bodyAnalytics: "Avec votre accord, nous utilisons des témoins pour mesurer la fréquentation du site. Aucun témoin non essentiel n’est activé sans votre consentement.",
-      bodyMarketing: "Avec votre accord, nous utilisons des témoins pour mesurer nos publicités et vous en présenter de plus pertinentes. Aucun témoin non essentiel n’est activé sans votre consentement.",
+      body: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Vous pouvez modifier vos choix en tout temps.",
+      bodyAnalytics: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Vous pouvez modifier vos choix en tout temps.",
+      bodyMarketing: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Vous pouvez modifier vos choix en tout temps.",
       policy: "Politique de confidentialité",
       customize: "Personnaliser mes choix",
       reject: "Tout refuser",
@@ -40,16 +40,16 @@
       save: "Enregistrer mes choix",
       alwaysOn: "Toujours actifs",
       necessary: ["Essentiels", "Nécessaires au fonctionnement et à la sécurité du site : mémoriser vos choix, protéger les formulaires contre les pourriels."],
-      analytics: ["Mesure d’audience", "Nous aident à comprendre comment le site est utilisé, de façon agrégée (Google Analytics)."],
-      marketing: ["Marketing", "Mesurent nos publicités et vous en présentent de plus pertinentes (Meta, Google Ads)."]
+      analytics: ["Mesure d’audience", "Nous aident à comprendre comment le site est utilisé afin de l’améliorer."],
+      marketing: ["Marketing", "Nous aident à mesurer nos campagnes et à rendre notre contenu plus pertinent."]
     },
     en: {
       region: "Cookie preferences",
       titleA: "Your privacy, ",
       titleB: "your choices",
-      body: "We use cookies to measure site traffic and, with your consent, to show you relevant ads. No non-essential cookie is turned on without your consent.",
-      bodyAnalytics: "With your consent, we use cookies to measure site traffic. No non-essential cookie is turned on without your consent.",
-      bodyMarketing: "With your consent, we use cookies to measure our ads and show you more relevant ones. No non-essential cookie is turned on without your consent.",
+      body: "We use cookies so our website works well and keeps getting better for you. You can change your choices at any time.",
+      bodyAnalytics: "We use cookies so our website works well and keeps getting better for you. You can change your choices at any time.",
+      bodyMarketing: "We use cookies so our website works well and keeps getting better for you. You can change your choices at any time.",
       policy: "Privacy policy",
       customize: "Customize my choices",
       reject: "Reject all",
@@ -57,33 +57,33 @@
       save: "Save my choices",
       alwaysOn: "Always active",
       necessary: ["Essential", "Needed for the site to work and stay secure: remembering your choices, protecting forms from spam."],
-      analytics: ["Audience measurement", "Help us understand how the site is used, in aggregate (Google Analytics)."],
-      marketing: ["Marketing", "Measure our ads and show you more relevant ones (Meta, Google Ads)."]
+      analytics: ["Audience measurement", "Help us understand how the site is used so we can improve it."],
+      marketing: ["Marketing", "Help us measure our campaigns and make our content more relevant."]
     },
     es: {
       region: "Preferencias de cookies",
-      titleA: "Tu privacidad, ",
-      titleB: "tus decisiones",
-      body: "Usamos cookies para medir el tráfico del sitio y, con tu consentimiento, para mostrarte anuncios relevantes. Ninguna cookie no esencial se activa sin tu consentimiento.",
-      bodyAnalytics: "Con tu consentimiento, usamos cookies para medir el tráfico del sitio. Ninguna cookie no esencial se activa sin tu consentimiento.",
-      bodyMarketing: "Con tu consentimiento, usamos cookies para medir nuestros anuncios y mostrarte anuncios más relevantes. Ninguna cookie no esencial se activa sin tu consentimiento.",
+      titleA: "Su privacidad, ",
+      titleB: "sus decisiones",
+      body: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Puede cambiar sus opciones en cualquier momento.",
+      bodyAnalytics: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Puede cambiar sus opciones en cualquier momento.",
+      bodyMarketing: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Puede cambiar sus opciones en cualquier momento.",
       policy: "Política de privacidad",
       customize: "Personalizar mis opciones",
       reject: "Rechazar todo",
       accept: "Aceptar todo",
       save: "Guardar mis opciones",
       alwaysOn: "Siempre activas",
-      necessary: ["Esenciales", "Necesarias para que el sitio funcione y sea seguro: recordar tus opciones, proteger los formularios contra el spam."],
-      analytics: ["Medición de audiencia", "Nos ayudan a entender cómo se usa el sitio, de forma agregada (Google Analytics)."],
-      marketing: ["Marketing", "Miden nuestros anuncios y te muestran anuncios más relevantes (Meta, Google Ads)."]
+      necessary: ["Esenciales", "Necesarias para que el sitio funcione y sea seguro: recordar sus opciones, proteger los formularios contra el spam."],
+      analytics: ["Medición de audiencia", "Nos ayudan a entender cómo se usa el sitio para mejorarlo."],
+      marketing: ["Marketing", "Nos ayudan a medir nuestras campañas y a que nuestro contenido sea más relevante."]
     },
     sv: {
       region: "Inställningar för kakor",
       titleA: "Din integritet, ",
       titleB: "dina val",
-      body: "Vi använder kakor för att mäta besöken på webbplatsen och, med ditt samtycke, för att visa dig relevanta annonser. Inga kakor som inte är nödvändiga aktiveras utan ditt samtycke.",
-      bodyAnalytics: "Med ditt samtycke använder vi kakor för att mäta besöken på webbplatsen. Inga kakor som inte är nödvändiga aktiveras utan ditt samtycke.",
-      bodyMarketing: "Med ditt samtycke använder vi kakor för att mäta våra annonser och visa dig mer relevanta annonser. Inga kakor som inte är nödvändiga aktiveras utan ditt samtycke.",
+      body: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Du kan ändra dina val när som helst.",
+      bodyAnalytics: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Du kan ändra dina val när som helst.",
+      bodyMarketing: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Du kan ändra dina val när som helst.",
       policy: "Integritetspolicy",
       customize: "Anpassa mina val",
       reject: "Avvisa alla",
@@ -91,8 +91,8 @@
       save: "Spara mina val",
       alwaysOn: "Alltid aktiva",
       necessary: ["Nödvändiga", "Behövs för att webbplatsen ska fungera och vara säker: komma ihåg dina val och skydda formulär mot skräppost."],
-      analytics: ["Besöksstatistik", "Hjälper oss att förstå hur webbplatsen används, på en samlad nivå (Google Analytics)."],
-      marketing: ["Marknadsföring", "Mäter våra annonser och visar dig mer relevanta annonser (Meta, Google Ads)."]
+      analytics: ["Besöksstatistik", "Hjälper oss att förstå hur webbplatsen används så att vi kan förbättra den."],
+      marketing: ["Marknadsföring", "Hjälper oss att mäta våra kampanjer och göra vårt innehåll mer relevant."]
     }
   };
 
@@ -277,6 +277,12 @@
 
   var host, root, card, lastFocus;
 
+  // Optional per-site tool names shown after a category description, e.g. config.tools = { analytics: "Google Analytics", marketing: "Meta" }.
+  function toolsFor(key) {
+    var tools = CFG.tools && CFG.tools[key];
+    return tools ? " (" + tools + ")" : "";
+  }
+
   function build() {
     var t = texts();
     var url = policyUrl();
@@ -285,7 +291,7 @@
     var cat = function (key, ctrl) {
       var last = key === CATS[CATS.length - 1] || (!CATS.length && key === "necessary");
       return '<div class="cat' + (last ? " cat-last" : "") + '"><div class="cat-text"><p class="cat-name" id="ubk-n-' + key + '">' + esc(t[key][0]) +
-        '</p><p class="cat-desc">' + esc(t[key][1]) + '</p></div><div class="cat-ctrl">' + ctrl + "</div></div>";
+        '</p><p class="cat-desc">' + esc(t[key][1] + toolsFor(key)) + '</p></div><div class="cat-ctrl">' + ctrl + "</div></div>";
     };
     var html =
       '<style>' + CSS + '</style>' +
@@ -417,7 +423,7 @@
   }
 
   window.ubkConsent = {
-    version: "0.1.9",
+    version: "0.1.10",
     open: function () { show(true); },
     get: function () { var c = read(); return c ? { analytics: c.a, marketing: c.m, ts: c.ts, v: c.v } : null; },
     reset: function () {
