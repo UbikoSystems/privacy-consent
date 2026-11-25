@@ -30,9 +30,9 @@
       region: "Préférences de témoins",
       titleA: "Votre vie privée, ",
       titleB: "vos choix",
-      body: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Vous pouvez modifier vos choix en tout temps.",
+      body: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Certains peuvent aussi servir à des fins publicitaires. Vous pouvez modifier vos choix en tout temps.",
       bodyAnalytics: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Vous pouvez modifier vos choix en tout temps.",
-      bodyMarketing: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Vous pouvez modifier vos choix en tout temps.",
+      bodyMarketing: "Nous utilisons des témoins pour que notre site fonctionne bien et s’améliore pour vous. Certains peuvent aussi servir à des fins publicitaires. Vous pouvez modifier vos choix en tout temps.",
       policy: "Politique de confidentialité",
       customize: "Personnaliser mes choix",
       reject: "Tout refuser",
@@ -41,15 +41,15 @@
       alwaysOn: "Toujours actifs",
       necessary: ["Essentiels", "Nécessaires au fonctionnement et à la sécurité du site : mémoriser vos choix, protéger les formulaires contre les pourriels."],
       analytics: ["Mesure d’audience", "Nous aident à comprendre comment le site est utilisé afin de l’améliorer."],
-      marketing: ["Marketing", "Nous aident à mesurer nos campagnes et à rendre notre contenu plus pertinent."]
+      marketing: ["Marketing", "Peuvent servir à des fins publicitaires, par exemple pour mesurer nos campagnes lorsque nous en diffusons."]
     },
     en: {
       region: "Cookie preferences",
       titleA: "Your privacy, ",
       titleB: "your choices",
-      body: "We use cookies so our website works well and keeps getting better for you. You can change your choices at any time.",
+      body: "We use cookies so our website works well and keeps getting better for you. Some may also be used for advertising. You can change your choices at any time.",
       bodyAnalytics: "We use cookies so our website works well and keeps getting better for you. You can change your choices at any time.",
-      bodyMarketing: "We use cookies so our website works well and keeps getting better for you. You can change your choices at any time.",
+      bodyMarketing: "We use cookies so our website works well and keeps getting better for you. Some may also be used for advertising. You can change your choices at any time.",
       policy: "Privacy policy",
       customize: "Customize my choices",
       reject: "Reject all",
@@ -58,15 +58,15 @@
       alwaysOn: "Always active",
       necessary: ["Essential", "Needed for the site to work and stay secure: remembering your choices, protecting forms from spam."],
       analytics: ["Audience measurement", "Help us understand how the site is used so we can improve it."],
-      marketing: ["Marketing", "Help us measure our campaigns and make our content more relevant."]
+      marketing: ["Marketing", "May be used for advertising, for example to measure our campaigns when we run them."]
     },
     es: {
       region: "Preferencias de cookies",
       titleA: "Su privacidad, ",
       titleB: "sus decisiones",
-      body: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Puede cambiar sus opciones en cualquier momento.",
+      body: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Algunas también pueden usarse con fines publicitarios. Puede cambiar sus opciones en cualquier momento.",
       bodyAnalytics: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Puede cambiar sus opciones en cualquier momento.",
-      bodyMarketing: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Puede cambiar sus opciones en cualquier momento.",
+      bodyMarketing: "Usamos cookies para que nuestro sitio funcione bien y mejore para usted. Algunas también pueden usarse con fines publicitarios. Puede cambiar sus opciones en cualquier momento.",
       policy: "Política de privacidad",
       customize: "Personalizar mis opciones",
       reject: "Rechazar todo",
@@ -75,15 +75,15 @@
       alwaysOn: "Siempre activas",
       necessary: ["Esenciales", "Necesarias para que el sitio funcione y sea seguro: recordar sus opciones, proteger los formularios contra el spam."],
       analytics: ["Medición de audiencia", "Nos ayudan a entender cómo se usa el sitio para mejorarlo."],
-      marketing: ["Marketing", "Nos ayudan a medir nuestras campañas y a que nuestro contenido sea más relevante."]
+      marketing: ["Marketing", "Pueden usarse con fines publicitarios, por ejemplo para medir nuestras campañas cuando las tenemos activas."]
     },
     sv: {
       region: "Inställningar för kakor",
       titleA: "Din integritet, ",
       titleB: "dina val",
-      body: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Du kan ändra dina val när som helst.",
+      body: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Vissa kan också användas i marknadsföringssyfte. Du kan ändra dina val när som helst.",
       bodyAnalytics: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Du kan ändra dina val när som helst.",
-      bodyMarketing: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Du kan ändra dina val när som helst.",
+      bodyMarketing: "Vi använder kakor för att vår webbplats ska fungera bra och bli bättre för dig. Vissa kan också användas i marknadsföringssyfte. Du kan ändra dina val när som helst.",
       policy: "Integritetspolicy",
       customize: "Anpassa mina val",
       reject: "Avvisa alla",
@@ -92,7 +92,7 @@
       alwaysOn: "Alltid aktiva",
       necessary: ["Nödvändiga", "Behövs för att webbplatsen ska fungera och vara säker: komma ihåg dina val och skydda formulär mot skräppost."],
       analytics: ["Besöksstatistik", "Hjälper oss att förstå hur webbplatsen används så att vi kan förbättra den."],
-      marketing: ["Marknadsföring", "Hjälper oss att mäta våra kampanjer och göra vårt innehåll mer relevant."]
+      marketing: ["Marknadsföring", "Kan användas i marknadsföringssyfte, till exempel för att mäta våra kampanjer när vi kör sådana."]
     }
   };
 
